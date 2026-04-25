@@ -1,1 +1,7 @@
+source:
+  customer: raw.customer
+  sales: raw.sales
 
+target:
+  customer_mart: dev.gold_customer
+  sales_mart: dev.gold_sales
