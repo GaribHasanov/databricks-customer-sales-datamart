@@ -1,9 +1,5 @@
 import yaml
 
-def load_config(env: str):
-    path = f"configs/{env}.yaml"
-
+def load_config(path: str):
     with open(path, "r") as file:
-        config = yaml.safe_load(file)
-
-    return config
+        return yaml.safe_load(file)
