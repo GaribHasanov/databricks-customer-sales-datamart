@@ -1,7 +1,11 @@
-source:
-  customer: raw.customer
-  sales: raw.sales
+env: dev
 
-target:
-  customer_mart: dev.gold_customer
-  sales_mart: dev.gold_sales
+paths:
+  raw: /mnt/dev/raw/
+  bronze: /mnt/dev/bronze/
+  silver: /mnt/dev/silver/
+  gold: /mnt/dev/gold/
+
+tables:
+  customers_bronze: bronze_customers
+  sales_bronze: bronze_sales
