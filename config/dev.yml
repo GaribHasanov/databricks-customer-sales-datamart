@@ -1,16 +1,28 @@
 env: dev
 
 storage:
-  customers_path: "/Volumes/dev/00_landing_zone/01_managed_volume"
-  sales_path: "/Volumes/dev/00_landing_zone/02_managed_volume"
+  base_path: "/Volumes/dev/00_landing_zone"
+
+  datasets:
+    customers:
+      path: "01_managed_volume/customers"
+      format: csv
+
+    sales:
+      path: "02_managed_volume/sales"
+      format: csv
 
 tables:
-  bronze_customers: dev_bronze_customers
-  bronze_sales: dev_bronze_sales
+  bronze:
+    customers: dev_bronze_customers
+    sales: dev_bronze_sales
 
-format:
-  input: csv
-  output: delta
+  silver:
+    customers: dev_silver_customers
+    sales: dev_silver_sales
+
+  gold:
+    customer_mart: dev_gold_customer_mart
 
 options:
   header: true
