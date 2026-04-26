@@ -1,7 +1,3 @@
-source:
-  customer: raw.customer
-  sales: raw.sales
-
-target:
-  customer_mart: prod.gold_customer
-  sales_mart: prod.gold_sales
+env: prod
+catalog: prod_catalog
+storage_path: abfss://prod-data-lake/
