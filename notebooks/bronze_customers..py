@@ -15,7 +15,7 @@ env = dbutils.widgets.get("env")
 import os
 from src.common.config_loader import load_config
 
-BASE_PATH = "/Workspace/Repos/<user>/<repo>"
+BASE_PATH = os.path.dirname(os.getcwd())  # repo root
 
 config = load_config(f"{BASE_PATH}/config/{env}.yml")
 
@@ -29,15 +29,16 @@ spark = get_spark("bronze-customers")
 # COMMAND ----------
 
 # COMMAND ----------
-base_path = config["storage"]["base_path"]
-dataset = config["storage"]["datasets"]["customers"]
+from src.common.config_loader import load_config
 
-customers_path = f"{base_path}/{dataset['path']}"
+config = load_config(f"{BASE_PATH}/config/{env}.yml")
+
+customers_path = config["storage"]["customers_path"]
 
 # COMMAND ----------
 
 # COMMAND ----------
-df_bronze = spark.read.format(dataset["format"]) \
+df_bronze = spark.read.format(config["format"]["input"]) \
     .option("header", config["options"]["header"]) \
     .option("inferSchema", config["options"]["inferSchema"]) \
     .load(customers_path)
@@ -45,7 +46,7 @@ df_bronze = spark.read.format(dataset["format"]) \
 # COMMAND ----------
 
 # COMMAND ----------
-df_bronze.display()
+df_bronze.display(limit=10)
 
 # COMMAND ----------
 
@@ -56,20 +57,15 @@ df_bronze = df_bronze.withColumn("ingestion_timestamp", current_timestamp())
 
 # COMMAND ----------
 
-# COMMAND ----------
+table_name = f"{env}.01_bronze.{config['tables']['bronze_customers']}"
+
 df_bronze.write.format("delta") \
     .mode("overwrite") \
-    .saveAsTable(config["tables"]["bronze"]["customers"])
+    .saveAsTable(table_name)
 
 # COMMAND ----------
 
-# COMMAND ----------
-print("Bronze customers table created successfully")
-
-# COMMAND ----------
-
-import os
-print(os.getcwd())
+spark.sql("DESCRIBE DETAIL workspace.default.dev_bronze_customers").select("location").show(truncate=False)
 
 # COMMAND ----------
 
