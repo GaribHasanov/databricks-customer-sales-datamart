@@ -1,11 +1,17 @@
 env: dev
 
-paths:
-  raw: /mnt/dev/raw/
-  bronze: /mnt/dev/bronze/
-  silver: /mnt/dev/silver/
-  gold: /mnt/dev/gold/
+storage:
+  customers_path: "/Volumes/dev/00_landing_zone/01_managed_volume"
+  sales_path: "/Volumes/dev/00_landing_zone/02_managed_volume"
 
 tables:
-  customers_bronze: bronze_customers
-  sales_bronze: bronze_sales
+  bronze_customers: dev_bronze_customers
+  bronze_sales: dev_bronze_sales
+
+format:
+  input: csv
+  output: delta
+
+options:
+  header: true
+  inferSchema: true
