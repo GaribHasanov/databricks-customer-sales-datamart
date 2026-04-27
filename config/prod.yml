@@ -1,3 +1,22 @@
 env: prod
-catalog: prod_catalog
-storage_path: abfss://prod-data-lake/
+
+storage:
+  base_path: "/Volumes/prod/00_landing_zone"
+
+  datasets:
+    customers:
+      path: "01_managed_volume/customers"
+      format: csv
+
+    sales:
+      path: "02_managed_volume/sales"
+      format: csv
+
+tables:
+  bronze:
+    customers: prod_bronze_customers
+    sales: prod_bronze_sales
+
+options:
+  header: true
+  inferSchema: true
