@@ -1,15 +1,43 @@
 bundle:
-  name: my_project
+  name: bronze_pipeline
+
+variables:
+  env:
+    default: dev
 
 targets:
+
   dev:
     workspace:
-      host: https://<dev-workspace-url>
+      host: https://<DEV-WORKSPACE>
     variables:
       env: dev
 
   prod:
     workspace:
-      host: https://<prod-workspace-url>
+      host: https://<PROD-WORKSPACE>
     variables:
       env: prod
+
+
+resources:
+
+  jobs:
+    bronze_job:
+      name: bronze-job-${var.env}
+
+      schedule:
+        quartz_cron_expression: "0 0 * * * ?"   # daily run
+        timezone_id: Europe/Berlin
+
+      tasks:
+        - task_key: bronze_ingestion
+          python_wheel_task:
+            package_name: bronze_job
+            entry_point: run
+          environment_key: default
+
+      environments:
+        default:
+          dependencies:
+            - ./requirements.txt
