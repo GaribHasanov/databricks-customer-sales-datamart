@@ -17,13 +17,6 @@ tables:
     customers: dev_bronze_customers
     sales: dev_bronze_sales
 
-  silver:
-    customers: dev_silver_customers
-    sales: dev_silver_sales
-
-  gold:
-    customer_mart: dev_gold_customer_mart
-
 options:
   header: true
   inferSchema: true
