@@ -1,0 +1,15 @@
+bundle:
+  name: my_project
+
+targets:
+  dev:
+    workspace:
+      host: https://<dev-workspace-url>
+    variables:
+      env: dev
+
+  prod:
+    workspace:
+      host: https://<prod-workspace-url>
+    variables:
+      env: prod
