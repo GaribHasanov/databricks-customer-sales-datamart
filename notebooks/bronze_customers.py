@@ -11,17 +11,22 @@ env = dbutils.widgets.get("env")
 
 # COMMAND ----------
 
-# COMMAND ----------
+import sys
 import os
+
+# cari notebook/script harada işləyirsə, oradan yuxarı qalxıb src tap
+current = os.getcwd()
+
+while current != "/":
+    if os.path.exists(os.path.join(current, "src")):
+        sys.path.insert(0, current)
+        break
+    current = os.path.dirname(current)
+
+# COMMAND ----------
+
+# COMMAND ----------
 from src.common.config_loader import load_config
-
-BASE_PATH = os.path.dirname(os.getcwd())  # repo root
-
-config = load_config(f"{BASE_PATH}/config/{env}.yml")
-
-# COMMAND ----------
-
-# COMMAND ----------
 from src.common.spark_session import get_spark
 
 spark = get_spark("bronze-customers")
@@ -34,6 +39,7 @@ from src.common.config_loader import load_config
 config = load_config(f"{BASE_PATH}/config/{env}.yml")
 
 customers_path = config["storage"]["customers_path"]
+#customers_path = config["storage"]["datasets"]["customers"]["path"]
 
 # COMMAND ----------
 
@@ -62,11 +68,3 @@ table_name = f"{env}.01_bronze.{config['tables']['bronze_customers']}"
 df_bronze.write.format("delta") \
     .mode("overwrite") \
     .saveAsTable(table_name)
-
-# COMMAND ----------
-
-spark.sql("DESCRIBE DETAIL workspace.default.dev_bronze_customers").select("location").show(truncate=False)
-
-# COMMAND ----------
-
-
