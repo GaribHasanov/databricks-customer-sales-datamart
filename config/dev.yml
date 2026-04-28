@@ -1,21 +1,21 @@
 env: dev
 
 storage:
-  base_path: "/Volumes/dev/00_landing_zone"
-
+  landing_zone: "/Volumes/dev/00_landing_zone"
   datasets:
     customers:
-      path: "01_managed_volume/customers"
+      path: "/Volumes/dev/00_landing_zone/01_managed_volume/customers"
       format: csv
-
     sales:
-      path: "02_managed_volume/sales"
+      path: "/Volumes/dev/00_landing_zone/02_managed_volume/sales"
       format: csv
 
 tables:
+  catalog: dev_catalog   # Catalog adını bura yaz
+  schema: bronze_schema # Schema adını bura yaz
   bronze:
-    customers: dev_bronze_customers
-    sales: dev_bronze_sales
+    customers: customers_table
+    sales: sales_table
 
 options:
   header: true
