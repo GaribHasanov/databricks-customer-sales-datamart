@@ -1,43 +1,14 @@
 bundle:
-  name: bronze_pipeline
+  name: customer_sales_pipeline
 
-variables:
-  env:
-    default: dev
+artifacts:
+  default:
+    type: whl
+    path: .
 
 targets:
-
   dev:
+    mode: development
+    default: true
     workspace:
-      host: https://<DEV-WORKSPACE>
-    variables:
-      env: dev
-
-  prod:
-    workspace:
-      host: https://<PROD-WORKSPACE>
-    variables:
-      env: prod
-
-
-resources:
-
-  jobs:
-    bronze_job:
-      name: bronze-job-${var.env}
-
-      schedule:
-        quartz_cron_expression: "0 0 * * * ?"   # daily run
-        timezone_id: Europe/Berlin
-
-      tasks:
-        - task_key: bronze_ingestion
-          python_wheel_task:
-            package_name: bronze_job
-            entry_point: run
-          environment_key: default
-
-      environments:
-        default:
-          dependencies:
-            - ./requirements.txt
+      host: https://<sənin-workspace-url>
