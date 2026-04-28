@@ -1,21 +1,21 @@
 env: dev
 
 storage:
-  landing_zone: "/Volumes/dev/00_landing_zone"
   datasets:
     customers:
-      path: "/Volumes/dev/00_landing_zone/01_managed_volume/customers"
+      # Volume daxilindəki bütün CSV fayllarını oxumaq üçün
+      path: "/Volumes/dev/00_landing_zone/01_managed_volume/*.csv"
       format: csv
     sales:
-      path: "/Volumes/dev/00_landing_zone/02_managed_volume/sales"
+      path: "/Volumes/dev/00_landing_zone/02_managed_volume/*.csv"
       format: csv
 
 tables:
-  catalog: dev_catalog   # Catalog adını bura yaz
-  schema: bronze_schema # Schema adını bura yaz
+  catalog: "dev"
+  schema: "01_bronze" 
   bronze:
-    customers: customers_table
-    sales: sales_table
+    customers: "dev_bronze_customers"
+    sales: "dev_bronze_sales"
 
 options:
   header: true
