@@ -1,14 +1,14 @@
 bundle:
-  name: customer_sales_pipeline
+  name: databricks-customer-sales-datamart
 
-artifacts:
-  default:
-    type: whl
-    path: .
+include:
+  - dev.yml
 
 targets:
   dev:
-    mode: development
-    default: true
     workspace:
-      host: https://<sənin-workspace-url>
+      host: https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483
+
+    variables:
+      catalog_name: dev
+      schema_name: 00_landing_zone
