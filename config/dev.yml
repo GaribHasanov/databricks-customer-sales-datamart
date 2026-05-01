@@ -1,22 +1,26 @@
-env: dev
+bundle:
+  name: adls_bronze_pipeline
 
-storage:
-  datasets:
-    customers:
-      # Volume daxilindəki bütün CSV fayllarını oxumaq üçün
-      path: "/Volumes/dev/00_landing_zone/01_managed_volume/*.csv"
-      format: csv
-    sales:
-      path: "/Volumes/dev/00_landing_zone/02_managed_volume/*.csv"
-      format: csv
+targets:
+  dev:
+    workspace:
+      host: https://<your-databricks-workspace-url>
 
-tables:
-  catalog: "dev"
-  schema: "01_bronze" 
-  bronze:
-    customers: "dev_bronze_customers"
-    sales: "dev_bronze_sales"
+    variables:
+      catalog_name: dev
+      schema_name: 00_landing_zone
 
-options:
-  header: true
-  inferSchema: true
+resources:
+  volumes:
+    customer_volume:
+      name: 01_managed_volume
+      catalog_name: ${var.catalog_name}
+      schema_name: ${var.schema_name}
+
+    sales_volume:
+      name: 02_managed_volume
+      catalog_name: ${var.catalog_name}
+      schema_name: ${var.schema_name}
+
+  jobs: {}
+  pipelines: {}
