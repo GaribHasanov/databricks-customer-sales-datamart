@@ -4,7 +4,7 @@ bundle:
 targets:
   dev:
     workspace:
-      host: https://<your-databricks-workspace-url>
+      host: https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483
 
     variables:
       catalog_name: dev
