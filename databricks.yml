@@ -2,13 +2,18 @@ bundle:
   name: databricks-customer-sales-datamart
 
 include:
-  - dev.yml
+  - config/dev.yml
+  - config/prod.yml
 
 targets:
   dev:
     workspace:
       host: https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483
 
-    variables:
-      catalog_name: dev
-      schema_name: 00_landing_zone
+    default: true
+
+  prod:
+    workspace:
+      host: https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483
+
+    default: false
