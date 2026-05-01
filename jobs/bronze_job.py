@@ -1,8 +1,10 @@
-from src.bronze.ingest_customers import load_customers
+from databricks.bundles import job, task
 
-def run():
-    df = load_customers("path")
-    df.show()
+@job(name="bronze_customer_job")
+def bronze_customer_job():
 
-if __name__ == "__main__":
-    run()
+    @task
+    def load_customer_bronze():
+        return {
+            "notebook_path": "../notebooks/01_bronze_customer_ingestion.py"
+        }
