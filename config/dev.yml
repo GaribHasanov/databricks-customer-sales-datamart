@@ -1,26 +1,10 @@
-bundle:
-  name: adls_bronze_pipeline
+variables:
+  catalog: dev
 
-targets:
-  dev:
-    workspace:
-      host: https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483
+  schema_landing: 00_landing_zone
+  schema_bronze: bronze
+  schema_silver: silver
+  schema_gold: gold
 
-    variables:
-      catalog_name: dev
-      schema_name: 00_landing_zone
-
-resources:
-  volumes:
-    customer_volume:
-      name: 01_managed_volume
-      catalog_name: ${var.catalog_name}
-      schema_name: ${var.schema_name}
-
-    sales_volume:
-      name: 02_managed_volume
-      catalog_name: ${var.catalog_name}
-      schema_name: ${var.schema_name}
-
-  jobs: {}
-  pipelines: {}
+  customer_volume: /Volumes/dev/00_landing_zone/01_managed_volume
+  sales_volume: /Volumes/dev/00_landing_zone/02_managed_volume
