@@ -9,11 +9,14 @@ targets:
   dev:
     workspace:
       host: https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483
-
     default: true
 
-  prod:
-    workspace:
-      host: https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483
-
-    default: false
+resources:
+  jobs:
+    bronze_customer_job:
+      name: bronze_customer_job
+      tasks:
+        - task_key: load_customer_bronze
+          notebook_task:
+            notebook_path: notebooks/01_bronze_customer_ingestion.py
+          existing_cluster_id: <your-cluster-id>
