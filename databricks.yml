@@ -7,20 +7,16 @@ include:
 targets:
   dev:
     workspace:
-      # Sənin tələb etdiyin tam URL formatı:
-      host: "https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483"
+      host: "https://databricks.com"
     default: true
 
   prod:
     workspace:
-      # Sənin tələb etdiyin tam URL formatı:
-      host: "https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483"
-      # İcazə xətasını aradan qaldırmaq üçün Shared yerinə Users istifadə edirik:
-      root_path: /Users/hasanov.garib@://gmail.com{bundle.name}/${bundle.target}
-    mode: production
-    permissions:
-      - user_name: hasanov.garib@gmail.com
-        level: CAN_MANAGE
+      host: "https://databricks.com"
+    # Professional email-siz yol
+    root_path: /Shared/deployments/${bundle.name}/${bundle.target}
+    # Community Edition-da icazə xətasını (deploy.lock) keçmək üçün:
+    mode: development 
 
 resources:
   jobs:
