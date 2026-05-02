@@ -9,26 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Repo code götür
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2. Python setup
-      - name: Setup Python Environment
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-
-      # 3. Databricks CLI install
-      - name: Install Databricks CLI
-        run: pip install databricks-cli
-
-      # 4. Environment variables set et
-      - name: Set Databricks Credentials
+      - name: Test Databricks API Connection
         run: |
-          echo "DATABRICKS_HOST=${{ secrets.DATABRICKS_HOST }}" >> $GITHUB_ENV
-          echo "DATABRICKS_TOKEN=${{ secrets.DATABRICKS_TOKEN }}" >> $GITHUB_ENV
-
-      # 5. Connection test
-      - name: Test Databricks Connection
-        run: databricks clusters list
+          curl -X GET https://${{ secrets.DATABRICKS_HOST }}/api/2.0/clusters/list \
+          -H "Authorization: Bearer ${{ secrets.DATABRICKS_TOKEN }}"
