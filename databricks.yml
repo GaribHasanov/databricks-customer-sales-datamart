@@ -8,8 +8,7 @@ targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-      # Databricks-in tələb etdiyi dəqiq yol
-      root_path: /Workspace/Users/hasanov.garib@gmail.com/.bundle/${bundle.name}/${bundle.target}
+      root_path: /Workspace/Users/hasanov.garib@://gmail.com{bundle.name}/${bundle.target}
     mode: production
 
 resources:
