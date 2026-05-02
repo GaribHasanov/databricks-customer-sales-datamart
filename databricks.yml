@@ -2,32 +2,34 @@ bundle:
   name: databricks-customer-sales-datamart
 
 include:
-  - config/*.yml  # Bütün konfiqurasiyaları avtomatik götürsün
+  - config/*.yml
 
 targets:
   dev:
     workspace:
-      host: https://dbc-ac974108-f7a7.cloud.databricks.com
+      host: https://databricks.com
     default: true
 
   prod:
     workspace:
-      host: https://dbc-ac974108-f7a7.cloud.databricks.com # Əgər prod workspace eynidirsə, saxlaya bilərsən
-    mode: production # Bu xüsusiyyət silinmənin qarşısını alır və təhlükəsizlik artırır
+      host: https://databricks.com
+      # Professional yanaşma: Fərdi email yox, Shared qovluq istifadə olunur
+      root_path: /Shared/.bundle/${bundle.name}/${bundle.target}
+    mode: production
 
 resources:
   jobs:
     bronze_customer_job:
-      name: "[${bundle.target}] bronze_customer_job" # Ad mühitə görə dəyişsin
+      name: "[${bundle.target}] bronze_customer_job"
       tasks:
         - task_key: load_customer_bronze
           notebook_task:
             notebook_path: ./notebooks/01_bronze_customer_ingestion.py
             base_parameters:
-              catalog: ${var.catalog} # Dəyişənləri config-dən götürür
+              catalog: ${var.catalog}
               schema: ${var.schema_bronze}
               customer_volume_path: ${var.customer_volume}
-          new_cluster: # Prod üçün yeni cluster açmaq daha yaxşıdır
-            num_workers: 2
+          new_cluster:
+            num_workers: 1
             spark_version: "13.3.x-scala2.12"
-            node_type_id: "Standard_DS3_v2"
+            node_type_id: "Standard_DS3_v2" # Regiona görə bu ID dəyişə bilər
