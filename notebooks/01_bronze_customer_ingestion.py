@@ -37,7 +37,7 @@ df = df.withColumn("ingestion_time", current_timestamp())
 # ---------------------------
 df.write.format("delta") \
     .mode("append") \
-    .saveAsTable("dev.01_bronze.customer_bronze")
+    .saveAsTable(table_name)
 
 print(f"Loaded data into {table_name}")
 
