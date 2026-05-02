@@ -9,40 +9,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Code checkout
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2. Python setup
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
-      # 3. Install Databricks SDK
-      - name: Install Dependencies
+      - name: Install SDK
         run: pip install databricks-sdk
 
-      # 4. Deploy Notebook to Databricks
-      - name: Deploy Notebook
-        run: |
-          python -c "
-from databricks.sdk import WorkspaceClient
-
-w = WorkspaceClient(
-    host='${{ secrets.DATABRICKS_HOST }}',
-    token='${{ secrets.DATABRICKS_TOKEN }}'
-)
-
-with open('notebooks/01_bronze_customer_ingestion.py','rb') as f:
-    content = f.read()
-
-w.workspace.import_(
-    path='/Users/bronze/01_bronze_customer_ingestion',
-    format='SOURCE',
-    content=content,
-    overwrite=True
-)
-
-print('SUCCESS: Notebook deployed')
-"
+      - name: Run Deploy Script
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: python scripts/deploy.py
