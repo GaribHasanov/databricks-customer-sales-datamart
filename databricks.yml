@@ -1,12 +1,15 @@
 bundle:
   name: databricks-customer-sales-datamart
 
+include:
+  - config/*.yml
+
 targets:
   prod:
     workspace:
-      host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-      root_path: /Shared/deployments/datamart_prod
-    mode: development
+      host: "https://databricks.com"
+      root_path: /Shared/deployments/hasanov_garib/datamart_prod
+    mode: production
 
 resources:
   jobs:
@@ -16,13 +19,15 @@ resources:
         - task_key: load_customer_bronze
           notebook_task:
             notebook_path: ./notebooks/01_bronze_customer_ingestion.py
-          # 'new_cluster' blokunu sildik, bunun əvəzinə serverless istifadə edirik
-          job_cluster_key: "serverless_cluster"
+            base_parameters:
+              catalog: ${var.catalog}
+              schema: ${var.schema_bronze}
+              customer_volume_path: ${var.customer_volume}
+          # 'new_cluster' əvəzinə serverless compute istifadə edirik
+          compute_key: "serverless_compute"
 
-      job_clusters:
-        - job_cluster_key: "serverless_cluster"
-          new_cluster:
-            # Serverless mühitində spark_version və node_type tələb olunmur
-            spark_version: "13.3.x-scala2.12"
-            custom_tags:
-              ResourceClass: "Serverless"
+      # Serverless hesablama resursunu burada təyin edirik
+      compute:
+        - compute_key: "serverless_compute"
+          spec:
+            kind: "serverless"
