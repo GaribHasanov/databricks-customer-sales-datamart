@@ -1,0 +1,24 @@
+name: Databricks CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set Databricks env
+        run: |
+          echo "DATABRICKS_HOST=${{ secrets.DATABRICKS_HOST }}" >> $GITHUB_ENV
+          echo "DATABRICKS_TOKEN=${{ secrets.DATABRICKS_TOKEN }}" >> $GITHUB_ENV
+
+      - name: Install Databricks SDK
+        run: pip install databricks-sdk
+
+      - name: Deploy bundle
+        run: databricks bundle deploy
