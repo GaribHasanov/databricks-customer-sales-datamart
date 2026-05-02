@@ -12,13 +12,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set Databricks env
+      - name: Install Databricks CLI
+        run: pip install databricks-cli
+
+      - name: Set env
         run: |
           echo "DATABRICKS_HOST=${{ secrets.DATABRICKS_HOST }}" >> $GITHUB_ENV
           echo "DATABRICKS_TOKEN=${{ secrets.DATABRICKS_TOKEN }}" >> $GITHUB_ENV
 
-      - name: Install Databricks SDK
-        run: pip install databricks-sdk
-
-      - name: Deploy bundle
-        run: databricks bundle deploy
+      - name: Test connection
+        run: databricks clusters list
