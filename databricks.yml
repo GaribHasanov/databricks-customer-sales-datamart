@@ -5,28 +5,20 @@ include:
   - config/*.yml
 
 targets:
-  dev:
-    workspace:
-      host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-    default: true
-
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-    # İcazəni hədəf səviyyəsində təyin edirik
+    # Yeni təmiz yol (adını dəyişdik ki, köhnə kilitlərə ilişməsin)
+    workspace_dir: /Users/hasanov.garib@://gmail.com
+    mode: development
     permissions:
       - user_name: hasanov.garib@gmail.com
         level: CAN_MANAGE
-    mode: development 
 
 resources:
   jobs:
     bronze_customer_job:
       name: "[${bundle.target}] bronze_customer_job"
-      # İcazəni resurs səviyyəsində də təkrarlayırıq (double-check)
-      permissions:
-        - user_name: hasanov.garib@gmail.com
-          level: CAN_MANAGE
       tasks:
         - task_key: load_customer_bronze
           notebook_task:
