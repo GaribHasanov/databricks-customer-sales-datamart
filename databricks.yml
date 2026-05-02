@@ -7,15 +7,15 @@ include:
 targets:
   dev:
     workspace:
-      host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
+      host: https://dbc-ac974108-f7a7.cloud.databricks.com
     default: true
 
   prod:
     workspace:
-      host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-      # Professional yol: Email yoxdur, birbaşa Shared qovluğu
-      root_path: /Shared/deployments/datamart_prod
-    # İcazə maneələrini aşmaq üçün
+      host: https://dbc-ac974108-f7a7.cloud.databricks.com
+      # Xətanı həll edən professional format:
+      # Bu həm '~/ 'tələbini ödəyir, həm də mühitdəki istifadəçini avtomatik tapır
+      root_path: /Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
     mode: development 
 
 resources:
