@@ -1,27 +1,15 @@
-name: Databricks CI/CD Pipeline
+name: Databricks CI/CD
 
 on:
   push:
     branches: ["main"]
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-
-      - name: Install SDK
-        run: pip install databricks-sdk
-
-      - name: Run Deploy Script
-        env:
-          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-        run: python scripts/deploy.py
+      - name: Check repo
+        run: ls -R
