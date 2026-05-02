@@ -7,16 +7,18 @@ include:
 targets:
   dev:
     workspace:
-      host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
+      host: https://dbc-ac974108-f7a7.cloud.databricks.com"
     default: true
 
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-      # HƏLL YOLU: '~/ 'və bundle adını birləşdiririk. 
-      # Bu simvol (~) avtomatik sənin profilini tapır, amma email-i yola yazmır.
-      root_path: /Workspace/Users/hasanov.garib@gmail.com/deployments/datamart_dev
-    # Free mühitində icazə kilidini (lock) keçmək üçün:
+    # Root path-i dinamik etmək icazə xətalarının qarşısını alır
+    root_path: /Users/hasanov.garib@://gmail.com{bundle.name}/${bundle.target}
+    # Səlahiyyətləri rəsmi olaraq tanıtdırırıq
+    permissions:
+      - user_name: hasanov.garib@gmail.com
+        level: CAN_MANAGE
     mode: development 
 
 resources:
