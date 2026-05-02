@@ -7,15 +7,20 @@ include:
 targets:
   dev:
     workspace:
-      host: https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483
+      # Sənin tələb etdiyin tam URL formatı:
+      host: "https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483"
     default: true
 
   prod:
     workspace:
-      host: https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483
-      # Professional yanaşma: Fərdi email yox, Shared qovluq istifadə olunur
-      root_path: /Shared/.bundle/${bundle.name}/${bundle.target}
+      # Sənin tələb etdiyin tam URL formatı:
+      host: "https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483"
+      # İcazə xətasını aradan qaldırmaq üçün Shared yerinə Users istifadə edirik:
+      root_path: /Users/hasanov.garib@://gmail.com{bundle.name}/${bundle.target}
     mode: production
+    permissions:
+      - user_name: hasanov.garib@gmail.com
+        level: CAN_MANAGE
 
 resources:
   jobs:
@@ -32,4 +37,4 @@ resources:
           new_cluster:
             num_workers: 1
             spark_version: "13.3.x-scala2.12"
-            node_type_id: "Standard_DS3_v2" # Regiona görə bu ID dəyişə bilər
+            node_type_id: "Standard_DS3_v2"
