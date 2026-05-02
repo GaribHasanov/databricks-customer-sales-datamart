@@ -10,7 +10,7 @@ from pyspark.sql.functions import current_timestamp
 # ---------------------------
 
 dbutils.widgets.text("catalog", "dev")
-dbutils.widgets.text("schema", "01_bronze")
+dbutils.widgets.text("schema", "bronze")
 dbutils.widgets.text("customer_volume_path", "/Volumes/dev/00_landing_zone/01_managed_volume")
 
 catalog = dbutils.widgets.get("catalog")
