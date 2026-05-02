@@ -5,11 +5,15 @@ on:
     branches: ["main"]
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check repo
-        run: ls -R
+      - uses: databricks/setup-cli@v0.2.1
+
+      - name: Deploy to Production
+        run: databricks bundle deploy -t prod
+        env:
+          DATABRICKS_HOST: https://dbc-ac974108-f7a7.cloud.databricks.com
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
