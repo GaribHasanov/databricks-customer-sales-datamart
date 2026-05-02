@@ -13,8 +13,9 @@ targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483"
-      # Linki və strukturu tam qoruyuruq
-      root_path: /Users/hasanov.garib@://gmail.com{bundle.name}/${bundle.target}
+      # 'mode: development' üçün tələb olunan professional yol formatı:
+      root_path: ~/.bundle/${bundle.name}/${bundle.target}
+    # Free Edition maneələrini aşmaq üçün ən yaxşı rejim:
     mode: development 
 
 resources:
