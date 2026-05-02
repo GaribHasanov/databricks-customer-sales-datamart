@@ -1,14 +1,12 @@
 bundle:
-  name: customer-sales-datamart
+  name: databricks-customer-sales-datamart
 
-include:
-  - config/*.yml
-
+# Include-u sildik ki, config fayllarındakı səhv yollar bura qarışmasın
 targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-      # Ən sadə və heç bir simvolu olmayan yeni yol:
+      # Yolu tamamilə fərqli və təmiz yazırıq:
       root_path: /Users/hasanov.garib@://gmail.com
     mode: production
 
@@ -20,10 +18,6 @@ resources:
         - task_key: load_customer_bronze
           notebook_task:
             notebook_path: ./notebooks/01_bronze_customer_ingestion.py
-            base_parameters:
-              catalog: ${var.catalog}
-              schema: ${var.schema_bronze}
-              customer_volume_path: ${var.customer_volume}
           new_cluster:
             num_workers: 1
             spark_version: "13.3.x-scala2.12"
