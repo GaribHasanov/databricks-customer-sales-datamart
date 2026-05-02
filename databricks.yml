@@ -8,6 +8,25 @@ targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-    # 'mode: production' sildik ki, sərt məhdudiyyətlər qoymasın
-    # Yolu tam fərqli qoyuruq ki, köhnə kilitlərə heç vaxt toxunmasın
-    root_path: /Workspace/Users/hasanov.garib@://gmail.com
+      # Düzgün və təmiz yol:
+      root_path: /Workspace/Users/hasanov.garib@://gmail.com
+    mode: production
+
+# BU HİSSƏ MÜTLƏQDİR Kİ, JOB YARANSIN:
+resources:
+  jobs:
+    bronze_customer_job:
+      name: "[${bundle.target}] bronze_customer_job"
+      tasks:
+        - task_key: load_customer_bronze
+          notebook_task:
+            # Fayllar root_path-ə yükləndiyi üçün bura avtomatik sinxron olur
+            notebook_path: ./notebooks/01_bronze_customer_ingestion.py
+            base_parameters:
+              catalog: ${var.catalog}
+              schema: ${var.schema_bronze}
+              customer_volume_path: ${var.customer_volume}
+          new_cluster:
+            num_workers: 1
+            spark_version: "13.3.x-scala2.12"
+            node_type_id: "Standard_DS3_v2"
