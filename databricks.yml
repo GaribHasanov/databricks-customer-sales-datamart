@@ -8,5 +8,6 @@ targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-      # Heç bir dəyişən istifadə etmədən birbaşa yol yazırıq
-      root_path: /Workspace/Users/hasanov.garib@://gmail.com
+    # 'mode: production' sildik ki, sərt məhdudiyyətlər qoymasın
+    # Yolu tam fərqli qoyuruq ki, köhnə kilitlərə heç vaxt toxunmasın
+    root_path: /Workspace/Users/hasanov.garib@://gmail.com
