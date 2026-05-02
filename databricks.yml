@@ -13,18 +13,20 @@ targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-    # 'root_path' əvəzinə 'workspace_dir' istifadə edin (yeni versiyalarda budur)
-    workspace_dir: /Users/hasanov.garib@://gmail.com{bundle.name}/${bundle.target}
+    # İcazəni hədəf səviyyəsində təyin edirik
+    permissions:
+      - user_name: hasanov.garib@gmail.com
+        level: CAN_MANAGE
     mode: development 
 
 resources:
   jobs:
     bronze_customer_job:
-      # Job daxilində icazəni birbaşa qeyd edirik
+      name: "[${bundle.target}] bronze_customer_job"
+      # İcazəni resurs səviyyəsində də təkrarlayırıq (double-check)
       permissions:
         - user_name: hasanov.garib@gmail.com
           level: CAN_MANAGE
-      name: "[${bundle.target}] bronze_customer_job"
       tasks:
         - task_key: load_customer_bronze
           notebook_task:
