@@ -15,7 +15,7 @@ targets:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
       # HƏLL YOLU: '~/ 'və bundle adını birləşdiririk. 
       # Bu simvol (~) avtomatik sənin profilini tapır, amma email-i yola yazmır.
-      root_path: ~/.bundle/${bundle.name}
+      root_path: /Workspace/Users/hasanov.garib@gmail.com/deployments/datamart_dev
     # Free mühitində icazə kilidini (lock) keçmək üçün:
     mode: development 
 
