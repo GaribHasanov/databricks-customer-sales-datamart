@@ -8,7 +8,7 @@ targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-    # İcazəni yalnız hədəf səviyyəsində saxlayırıq (üst-üstə düşməsin)
+    # İcazəni yalnız bir yerdə yazırıq ki, xəta verməsin
     permissions:
       - user_name: hasanov.garib@gmail.com
         level: CAN_MANAGE
