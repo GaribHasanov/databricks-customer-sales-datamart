@@ -1,19 +1,19 @@
 bundle:
-  name: databricks-customer-sales-datamart
+  name: customer-sales-final-v1
 
-# Include-u sildik ki, config fayllarındakı səhv yollar bura qarışmasın
+# include hissəsini silmişik, hər şey buradadır
 targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-      # Yolu tamamilə fərqli və təmiz yazırıq:
+      # Tam fərqli qovluq adı:
       root_path: /Users/hasanov.garib@://gmail.com
     mode: production
 
 resources:
   jobs:
     bronze_customer_job:
-      name: "[prod] bronze_customer_job"
+      name: "FINAL_PROD_BRONZE_JOB"
       tasks:
         - task_key: load_customer_bronze
           notebook_task:
