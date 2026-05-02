@@ -8,11 +8,10 @@ targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-      # Düzgün və təmiz yol:
-      root_path: /Workspace/Users/hasanov.garib@://gmail.com
+      # Səhv simvolları (@:/) sildik, tam düzgün yolu yazdıq:
+      root_path: /Users/hasanov.garib@://gmail.com
     mode: production
 
-# BU HİSSƏ MÜTLƏQDİR Kİ, JOB YARANSIN:
 resources:
   jobs:
     bronze_customer_job:
@@ -20,7 +19,6 @@ resources:
       tasks:
         - task_key: load_customer_bronze
           notebook_task:
-            # Fayllar root_path-ə yükləndiyi üçün bura avtomatik sinxron olur
             notebook_path: ./notebooks/01_bronze_customer_ingestion.py
             base_parameters:
               catalog: ${var.catalog}
