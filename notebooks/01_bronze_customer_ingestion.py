@@ -35,7 +35,7 @@ df = df.withColumn("ingestion_time", current_timestamp())
 # ---------------------------
 # WRITE TO DELTA BRONZE
 # ---------------------------
-spark.sql(f"CREATE SCHEMA IF NOT EXISTS {catalog}.{schema}
+spark.sql(f"CREATE SCHEMA IF NOT EXISTS {catalog}.{schema})
 df.write.format("delta") \
     .mode("append") \
     .saveAsTable(table_name)
