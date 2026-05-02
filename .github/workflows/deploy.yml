@@ -18,5 +18,6 @@ jobs:
       - name: Deploy Bundle
         run: databricks bundle deploy -t prod
         env:
+          # Secret daxilində URL tam olmalıdır: https://databricks.com
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
