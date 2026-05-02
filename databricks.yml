@@ -7,12 +7,12 @@ include:
 targets:
   dev:
     workspace:
-      host: "https://databricks.com"
+      host: "https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483"
     default: true
 
   prod:
     workspace:
-      host: "https://databricks.com"
+      host: "https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483"
     # Professional email-siz yol
     root_path: /Shared/deployments/${bundle.name}/${bundle.target}
     # Community Edition-da icazə xətasını (deploy.lock) keçmək üçün:
