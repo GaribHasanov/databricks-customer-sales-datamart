@@ -8,13 +8,11 @@ targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-    # Diqqət: Yeni qovluq yolu yazdıq ki, köhnə 'permission' kilitlərinə ilişməsin
-    artifact_path: /Users/hasanov.garib@://gmail.com
-    state_path: /Users/hasanov.garib@://gmail.com
-    mode: development
+    # İcazəni yalnız hədəf səviyyəsində saxlayırıq (üst-üstə düşməsin)
     permissions:
       - user_name: hasanov.garib@gmail.com
         level: CAN_MANAGE
+    mode: development
 
 resources:
   jobs:
