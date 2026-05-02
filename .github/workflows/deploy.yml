@@ -24,7 +24,7 @@ jobs:
         run: pip install databricks-sdk
 
       # 4. Deploy Notebook to Databricks
-      - name: Upload Notebook to Databricks
+      - name: Deploy Notebook
         run: |
           python -c "
 from databricks.sdk import WorkspaceClient
@@ -38,11 +38,11 @@ with open('notebooks/01_bronze_customer_ingestion.py','rb') as f:
     content = f.read()
 
 w.workspace.import_(
-    path='/Workspace/bronze/01_bronze_customer_ingestion',
+    path='/Users/bronze/01_bronze_customer_ingestion',
     format='SOURCE',
     content=content,
     overwrite=True
 )
 
-print('Notebook deployed successfully')
+print('SUCCESS: Notebook deployed')
 "
