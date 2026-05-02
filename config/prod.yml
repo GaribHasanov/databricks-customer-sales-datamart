@@ -1,9 +1,15 @@
 variables:
-  catalog: prod  # Production üçün fərqli kataloq
-  schema_landing: 00_landing_zone
-  schema_bronze: bronze
-  schema_silver: silver
-  schema_gold: gold
-
-  customer_volume: /Volumes/prod/00_landing_zone/01_managed_volume
-  sales_volume: /Volumes/prod/00_landing_zone/02_managed_volume
+  catalog:
+    default: prod
+  schema_landing:
+    default: 00_landing_zone
+  schema_bronze:
+    default: bronze
+  schema_silver:
+    default: silver
+  schema_gold:
+    default: gold
+  customer_volume:
+    default: /Volumes/prod/00_landing_zone/01_managed_volume
+  sales_volume:
+    default: /Volumes/prod/00_landing_zone/02_managed_volume
