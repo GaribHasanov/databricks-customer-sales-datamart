@@ -1,1 +1,1 @@
-CREATE SCHEMA IF NOT EXISTS dev.bronze;
+--CREATE SCHEMA IF NOT EXISTS dev.bronze;
