@@ -7,15 +7,15 @@ include:
 targets:
   dev:
     workspace:
-      host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
+      host: "https://databricks.com"
     default: true
 
   prod:
     workspace:
-      host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-      # BU SƏTİR KRİTİKDİR: Şəxsi qovluqdan (email-dən) qaçırıq və Shared istifadə edirik
-      root_path: /Shared/deployments/${bundle.name}/${bundle.target}
-    # Free Edition-da icazə (permission/lock) xətalarını ləğv etmək üçün:
+      host: "https://databricks.com"
+      # Senior həlli: Avtomatik yollardan qaçmaq üçün mütləq qısa yol
+      root_path: ~/.bundle/${bundle.name}
+    # Free/Community maneələrini (lock/permission) bypass etmək üçün tək yol
     mode: development 
 
 resources:
