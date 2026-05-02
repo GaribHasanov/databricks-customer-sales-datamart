@@ -1,5 +1,5 @@
 bundle:
-  name: databricks-customer-sales-datamart
+  name: customer-sales-datamart
 
 include:
   - config/*.yml
@@ -8,14 +8,14 @@ targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-      # Səhv simvolları (@:/) sildik, tam düzgün yolu yazdıq:
+      # Ən sadə və heç bir simvolu olmayan yeni yol:
       root_path: /Users/hasanov.garib@://gmail.com
     mode: production
 
 resources:
   jobs:
     bronze_customer_job:
-      name: "[${bundle.target}] bronze_customer_job"
+      name: "[prod] bronze_customer_job"
       tasks:
         - task_key: load_customer_bronze
           notebook_task:
