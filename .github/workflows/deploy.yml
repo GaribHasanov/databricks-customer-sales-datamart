@@ -14,5 +14,10 @@ jobs:
 
       - name: Test Databricks API Connection
         run: |
-          curl -X GET https://${{ secrets.DATABRICKS_HOST }}/api/2.0/clusters/list \
-          -H "Authorization: Bearer ${{ secrets.DATABRICKS_TOKEN }}"
+          HOST="${{ secrets.DATABRICKS_HOST }}"
+          TOKEN="${{ secrets.DATABRICKS_TOKEN }}"
+
+          echo "Testing connection..."
+
+          curl -s -X GET "$HOST/api/2.0/clusters/list" \
+          -H "Authorization: Bearer $TOKEN"
