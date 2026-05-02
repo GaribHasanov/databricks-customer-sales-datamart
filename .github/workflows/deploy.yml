@@ -12,11 +12,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Databricks CLI
-        uses: databricks/setup-cli@main # v0.2.1 yerinə stabil 'main' istifadə edək
+      - name: Install Databricks CLI
+        uses: databricks/setup-cli@main
 
       - name: Deploy Bundle
         run: databricks bundle deploy -t prod
         env:
-          DATABRICKS_HOST: https://dbc-ac974108-f7a7.cloud.databricks.com
+          # İndi düzgün şəkildə Secret-dən istifadə edirik:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
