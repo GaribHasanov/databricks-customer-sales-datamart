@@ -12,7 +12,7 @@ with open("notebooks/01_bronze_customer_ingestion.py", "rb") as f:
     content = base64.b64encode(f.read()).decode("utf-8")
 
 w.workspace.import_(
-    path="/Users/YOUR_EMAIL/01_bronze_customer_ingestion",
+    path="/Shared/bronze/01_bronze_customer_ingestion",
     format=ImportFormat.SOURCE,
     content=content,
     overwrite=True
