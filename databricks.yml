@@ -7,12 +7,12 @@ include:
 targets:
   dev:
     workspace:
-      host: "https://databricks.com"
+      host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
     default: true
 
   prod:
     workspace:
-      host: "https://databricks.com"
+      host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
       # Senior həlli: Avtomatik yollardan qaçmaq üçün mütləq qısa yol
       root_path: ~/.bundle/${bundle.name}
     # Free/Community maneələrini (lock/permission) bypass etmək üçün tək yol
