@@ -13,9 +13,8 @@ targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com/?o=7474656457621483"
-    # Professional email-siz yol
-    root_path: /Shared/deployments/${bundle.name}/${bundle.target}
-    # Community Edition-da icazə xətasını (deploy.lock) keçmək üçün:
+      # Linki və strukturu tam qoruyuruq
+      root_path: /Users/hasanov.garib@://gmail.com{bundle.name}/${bundle.target}
     mode: development 
 
 resources:
