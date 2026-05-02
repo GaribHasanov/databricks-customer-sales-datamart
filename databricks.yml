@@ -13,9 +13,10 @@ targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-      # Senior həlli: Avtomatik yollardan qaçmaq üçün mütləq qısa yol
+      # HƏLL YOLU: '~/ 'və bundle adını birləşdiririk. 
+      # Bu simvol (~) avtomatik sənin profilini tapır, amma email-i yola yazmır.
       root_path: ~/.bundle/${bundle.name}
-    # Free/Community maneələrini (lock/permission) bypass etmək üçün tək yol
+    # Free mühitində icazə kilidini (lock) keçmək üçün:
     mode: development 
 
 resources:
