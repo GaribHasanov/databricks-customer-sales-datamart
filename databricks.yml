@@ -15,7 +15,7 @@ variables:
 targets:
   prod:
     workspace:
-      host: "https://databricks.com"
+      host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
       root_path: /Workspace/Repos/Production/core_data_v1/customer/bronze
     mode: production
 
@@ -38,7 +38,7 @@ resources:
               catalog: ${var.catalog}
               schema: ${var.schema_bronze}
               customer_volume_path: ${var.customer_volume}
-              # Dinamik yollar
+         
               checkpoint_path: "/Volumes/${var.catalog}/${var.schema_bronze}/metadata/checkpoints/customer_bronze"
               schema_location: "/Volumes/${var.catalog}/${var.schema_bronze}/metadata/schemas/customer_bronze"
           
