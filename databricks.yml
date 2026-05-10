@@ -4,14 +4,29 @@ bundle:
 include:
   - config/*.yml
 
+variables:
+  catalog:
+    default: "dev"
+  schema_bronze:
+    default: "bronze"
+  customer_volume:
+    default: "/Volumes/dev/00_landing_zone/01_managed_volume"
+
 targets:
   prod:
     workspace:
-      host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
+      host: "https://databricks.com"
       root_path: /Workspace/Repos/Production/core_data_v1/customer/bronze
     mode: production
 
 resources:
+  # --- YENİ: Metadata üçün Volume yaradılması ---
+  volumes:
+    metadata_volume:
+      name: metadata
+      catalog_name: ${var.catalog}
+      schema_name: ${var.schema_bronze}
+
   jobs:
     bronze_customer_job:
       name: "[prod] bronze_customer_job"
@@ -23,10 +38,12 @@ resources:
               catalog: ${var.catalog}
               schema: ${var.schema_bronze}
               customer_volume_path: ${var.customer_volume}
+              # Dinamik yollar
+              checkpoint_path: "/Volumes/${var.catalog}/${var.schema_bronze}/metadata/checkpoints/customer_bronze"
+              schema_location: "/Volumes/${var.catalog}/${var.schema_bronze}/metadata/schemas/customer_bronze"
           
           compute_key: "serverless_compute"
 
-      
       compute:
         - compute_key: "serverless_compute"
           spec:
