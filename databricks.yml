@@ -8,7 +8,7 @@ targets:
   prod:
     workspace:
       host: "https://dbc-ac974108-f7a7.cloud.databricks.com"
-      root_path: /Shared/deployments/hasanov_garib/datamart_prod
+      root_path: /Workspace/Repos/Production/core_data_v1/customer/bronze
     mode: production
 
 resources:
@@ -23,10 +23,10 @@ resources:
               catalog: ${var.catalog}
               schema: ${var.schema_bronze}
               customer_volume_path: ${var.customer_volume}
-          # 'new_cluster' əvəzinə serverless compute istifadə edirik
+          
           compute_key: "serverless_compute"
 
-      # Serverless hesablama resursunu burada təyin edirik
+      
       compute:
         - compute_key: "serverless_compute"
           spec:
