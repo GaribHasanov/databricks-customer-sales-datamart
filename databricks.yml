@@ -30,6 +30,12 @@ resources:
   jobs:
     bronze_customer_job:
       name: "[prod] bronze_customer_job"
+      
+      schedule:
+        quartz_cron_expression: "0 0 1 * * ?" 
+        timezone_id: "UTC"
+        pause_status: "UNPAUSED"
+      
       tasks:
         - task_key: load_customer_bronze
           notebook_task:
