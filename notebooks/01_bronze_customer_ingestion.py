@@ -68,12 +68,3 @@ query.awaitTermination()
 # COMMAND ----------
 
 print(f"Loaded data into {table_name}")
-
-# COMMAND ----------
-
-display(spark.table(table_name))
-
-
-# COMMAND ----------
-
-
