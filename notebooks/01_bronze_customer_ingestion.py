@@ -58,6 +58,7 @@ query = (df.writeStream
     .format("delta")
     .outputMode("append")
     .option("checkpointLocation", checkpoint_path)
+    .option("mergeSchema", "true")
     .trigger(availableNow=True)
     .toTable(table_name))
 
